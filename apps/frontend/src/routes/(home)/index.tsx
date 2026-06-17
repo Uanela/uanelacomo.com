@@ -5,6 +5,7 @@ import { GithubIcon, LinkedinIcon, YoutubeIcon } from "lucide-react";
 import ProjectSection from "./-components/projects.section";
 import ServicesSection from "./-components/services.section";
 import BlogsSection from "./-components/blog.section";
+import TrustedBySection from "./-components/trusted-by.section";
 
 export const Route = createFileRoute("/(home)/")({ component: Home });
 
@@ -15,6 +16,7 @@ function Home() {
       <ProjectSection />
       <ServicesSection />
       <BlogsSection />
+      <TrustedBySection />
     </div>
   );
 }

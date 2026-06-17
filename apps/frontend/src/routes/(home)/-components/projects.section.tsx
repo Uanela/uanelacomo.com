@@ -1,16 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import Section from "./section";
 import { ArrowRightIcon } from "lucide-react";
+import type { BadgeProps } from "#/components/ui/badge";
+import Badge from "#/components/ui/badge";
 
 interface Project {
   id: string;
   name: string;
   description: string;
   cover: string;
-  role: "Owner" | "Contributor" | "Collaborator";
+  roles: ("Owner" | "Contributor" | "Collaborator" | "Maintainer")[];
   scope: "Private" | "Public";
   link?: string;
 }
+
+const projectRoleMap: Record<Project["roles"][number], BadgeProps["color"]> = {
+  Collaborator: "orange",
+  Contributor: "sky",
+  Maintainer: "red",
+  Owner: "emerald",
+};
 
 export default function ProjectsSection() {
   const projects: Project[] = [
@@ -20,7 +29,7 @@ export default function ProjectsSection() {
       id: "1",
       name: "Arkos.js",
       description: "The Express & Prisma RESTful framework",
-      role: "Owner",
+      roles: ["Maintainer"],
       scope: "Public",
       link: "https://github.com/uanela/arkos",
     },
@@ -30,7 +39,7 @@ export default function ProjectsSection() {
       id: "1",
       name: "SuperM7.com",
       description: "Business e-commerce platform",
-      role: "Owner",
+      roles: ["Owner"],
       scope: "Private",
       link: "https://www.superm7.com",
     },
@@ -40,7 +49,7 @@ export default function ProjectsSection() {
       id: "1",
       name: "Neovim Tree",
       description: "A file explorer tree for neovim written in lua",
-      role: "Collaborator",
+      roles: ["Collaborator"],
       scope: "Public",
       link: "https://github.com/nvim-tree/nvim-tree.lua",
     },
@@ -63,7 +72,7 @@ function ProjectItem({ project }: { project: Project }) {
       <Link
         to={
           project?.link ||
-          `/products/${project.name.split(" ").join("-")}_--_${project.id}`
+          `/projects/${project.name.split(" ").join("-")}_--_${project.id}`
         }
       >
         <div className="flex gap-4">
@@ -74,14 +83,12 @@ function ProjectItem({ project }: { project: Project }) {
           <div className="flex-1">
             <div className="flex gap-2 items-center">
               <h4 className="font-bold">{project.name}</h4>
-              {project.role === "Collaborator" && (
-                <span className="text-xs bg-sky-900 px-1  text-sky-200 border border-sky-500 rounded-full">
-                  collaborator
-                </span>
-              )}
+              {project.roles.map((r) => (
+                <Badge color={projectRoleMap[r]}>{r.toLowerCase()}</Badge>
+              ))}
               {project.scope === "Public" && (
                 <span className="text-xs bg-fuchsia-900 px-1  text-fuchsia-200 border border-fuchsia-500 rounded-full">
-                  open source
+                  oss
                 </span>
               )}
             </div>

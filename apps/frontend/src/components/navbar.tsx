@@ -11,8 +11,8 @@ import {
 
 export default function Navbar() {
   return (
-    <div className="">
-      <nav className="mx-auto bg-fd-background p-6 rounded-b-xl">
+    <div className="fixed w-full left-0 top-0 z-[999]">
+      <nav className="mx-auto bg-fd-background p-6 rounded-b-xl max-w-2xl">
         <ul className="flex items-center justify-center md:gap-12 gap-10">
           <NavItem to="/" Icon={HomeIcon}>
             Home

@@ -49,11 +49,6 @@
   --color-fd-ring: hsl(199, 92%, 65%);
 }
 
-div.text-fd-muted-foreground {
-  /* font-weight: 600; */
-  color: var(--color-fd-foreground);
-}
-
 .prose a[target="_blank"] {
   color: var(--color-fd-primary);
   text-decoration: none;

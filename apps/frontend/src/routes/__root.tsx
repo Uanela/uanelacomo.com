@@ -15,7 +15,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Uanela Como",
       },
     ],
     links: [
@@ -35,7 +35,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="bg-fd-card text-fd-foreground">
-        <main className="max-w-2xl mx-auto">{children}</main>
+        <main className="max-w-2xl mx-auto pt-18">{children}</main>
         <TanStackDevtools
           config={{
             position: "bottom-right",
